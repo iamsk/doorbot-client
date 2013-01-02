@@ -19,17 +19,22 @@ App.views.Main = Ext.extend(Ext.Panel, {
         };
 
         Ext.apply(this, {
-            html: 'placeholder',
-            layout: 'fit',
+            layout: {
+                type: 'hbox'
+            },
             dockedItems: [titlebar],
             items: [
+                {xtype: 'spacer'},
                 {
                     xtype: 'button',
                     text: 'OPEN',
                     ui: 'confirm',
+                    height: 100,
+                    width: 200,
                     handler: this.onOpenAction,
                     scope: this
-                }
+                },
+                {xtype: 'spacer'}
             ]
         });
 

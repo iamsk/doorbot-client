@@ -41,20 +41,23 @@ Ext.regController('Users', {
 
     Open: function(options) {
         var model = this.store.getAt(0);
-
-        // Mask the form
-        this.setMasked({
-            xtype: 'loadmask',
-            message: 'Opening...'
-        });
-
-        // Put it inside a timeout so it feels like it is going to a server.
-        setTimeout(function() {
-            if (model != null) {
-                sleep(500);
-            }
-            // Unmask the formpanel
-            this.setMasked(false);
-        }, 1000);
+        if (model != null) {
+            Ext.Ajax.request({
+                url: '/open',
+                method: "POST",
+                params: {
+                    email: model.email,
+                    password: model.password
+                },
+                success: function(){
+                    alert("open sucessful");
+                },
+                failure: function(){
+                    alert("open failed");
+                }
+            });
+        } else {
+            alert("please fill the settings!")
+        }
     }
 });
