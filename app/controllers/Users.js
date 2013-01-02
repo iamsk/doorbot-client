@@ -42,15 +42,16 @@ Ext.regController('Users', {
     Open: function(options) {
         var model = this.store.getAt(0);
         if (model != null) {
+            alert(model.email);
             Ext.Ajax.request({
-                url: '/open',
+                url: '/door',
                 method: "POST",
                 params: {
                     email: model.email,
                     password: model.password
                 },
-                success: function(){
-                    alert("open sucessful");
+                success: function(resp){
+                    alert(resp.responseText);
                 },
                 failure: function(){
                     alert("open failed");
