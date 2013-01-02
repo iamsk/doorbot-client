@@ -42,19 +42,18 @@ Ext.regController('Users', {
     Open: function(options) {
         var model = this.store.getAt(0);
         if (model != null) {
-            alert(model.email);
             Ext.Ajax.request({
                 url: '/door',
                 method: "POST",
                 params: {
-                    email: model.email,
-                    password: model.password
+                    email: model.data.email,
+                    password: model.data.password
                 },
                 success: function(resp){
                     alert(resp.responseText);
                 },
-                failure: function(){
-                    alert("open failed");
+                failure: function(resp){
+                    alert(resp.responseText);
                 }
             });
         } else {
