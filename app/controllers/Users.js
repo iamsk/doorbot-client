@@ -41,13 +41,15 @@ Ext.regController('Users', {
 
     Open: function(options) {
         var model = this.store.getAt(0);
+        var d = new Date();
         if (model != null) {
             Ext.Ajax.request({
                 url: '/door',
                 method: "POST",
                 params: {
                     email: model.data.email,
-                    password: model.data.password
+                    password: model.data.password,
+                    timestamp: d.getTime()
                 },
                 success: function(resp){
                     alert(resp.responseText);
